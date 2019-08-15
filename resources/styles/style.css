@@ -1,0 +1,231 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+html{
+    height: 100%;
+}
+body{
+    background: linear-gradient(90deg,#237dae 0%, #0cb994 100%);
+    height: 100%;
+}
+.main{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+/*Title TIC TAC TOE*/
+.main header h1{
+    font-family: 'Pacifico' !important;
+    font-style: italic;
+    color: white
+}
+/*Container mode( userVsuser or userVsComputer)*/
+.container__mode{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+}
+.container__type,
+.userSelect{
+    width:100%;
+    margin: .5rem auto;
+    padding: .5rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: hsl(164, 89%, 41%);
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease-in;
+}
+/*if the user want to play with the computer*/
+.container__playComputer{
+    display: none;
+}
+.container__playComputer label,
+.container__playComputer p{
+    margin-top: .5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color:white
+}
+.container__playComputer .container__input,
+.container__playComputer .container__label{
+    width: 80%;
+    margin: .5rem auto;
+}
+.userChoiceContainer{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+.userSelect{
+    width: 25%;
+    font-family: 'Pacifico' !important;
+    
+}
+/*Form Styles*/
+    .container__form{
+        display: none;
+        width: 80%;
+        margin: 0 auto;
+        color: white
+    }
+    .container__users{
+        margin: 1rem 0;
+    }
+    .container__input{
+        margin-top: .5rem
+    }
+    .container__input input{
+        width: 100%;
+        height: 3em;
+        margin-bottom: .5rem;
+        padding: .4em;
+        font-size: 1.1em;
+        text-align: start;
+        -webkit-appearance: textfield;
+        background-color: white;
+        -webkit-rtl-ordering: logical;
+        cursor: text;
+        color:#1c1c1c;
+        border: 1px solid #1c1c1c;
+        border-radius: 5px;
+        box-sizing: border-box;
+        border: white;
+    }
+    /*these classes are add with JS (.alert and .input-alert) */
+
+    .alert{
+        margin-top: -.3rem;
+        text-align: right;
+        color:white;
+        font-style: italic
+    }
+    .input-alert{
+        background: url('../images/icon-error.svg') no-repeat;
+        background-position: 95% center;
+    }
+
+    .container__btn{
+        width: 100%;
+        display: flex;
+        justify-content: center
+    }
+/*end*/
+/*container game*/
+
+.container__game{
+    width: 100%;
+    display: none;
+}
+.container-grid{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    box-shadow: 5px 5px 15px #1c1c1c;
+}
+.container-grid > *{
+    flex: 1 0 33.33%
+}
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    height: 100px;
+    font-family: 'Pacifico' !important;
+}
+.cell:nth-child(2),
+.cell:nth-child(5),
+.cell:nth-child(8){
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+.cell:nth-child(4),
+.cell:nth-child(5),
+.cell:nth-child(6){
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+button{
+    width: 80%;
+    margin: .5rem auto;
+    padding: .5rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    background: hsl(164, 89%, 41%);
+    border-radius: 5px;
+    border:none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease-in 
+}
+button:hover{
+    background:hsl(164, 89%, 45%);
+    font-size: 1.1rem;
+    transition: all 0.015s ease-in 
+}
+button:active{
+    margin-top: .1rem;
+    margin-bottom: .3rem;
+    background: hsl(164, 89%, 37%);
+}
+.playAgain{
+    display: none
+}
+.container__scores{
+    display: flex;
+    justify-content: center;
+    padding:1rem;
+}
+.container__scores > *{
+    width: 40%;
+    margin-right: .5rem;
+    padding: .5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+}
+.container__score p{
+    font-family: 'Pacifico' !important;
+    text-decoration: underline
+}
+/*Game over styles, this element is added with JS*/
+.winner{
+    width: 80%;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.304);
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px #1c1c1c;
+}
