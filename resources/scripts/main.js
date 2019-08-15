@@ -72,6 +72,7 @@ function game(){
         const btn = document.querySelector('.playAgain');//btn play again
         const score1 = document.getElementById('score1');//score1 user x
         const score2 = document.getElementById('score2');//score2 user o
+        let tag = true;
         score1.textContent = 0;
         score2.textContent = 0;
         const newGrid = () =>{
@@ -165,17 +166,11 @@ function game(){
                 (values[2]!== '' && values[2]===values[5]&& values[2]===values[8]) ||
                 (values[3]!== '' && values[3]===values[4]&& values[3]===values[5]) ||
                 (values[6]!== '' && values[6]===values[7]&& values[6]===values[8])
-            ){
-                setTimeout(()=>{
-                    gameOver(user)
-                },250)
-                
-            
+            ){      
+                    tag = false;
+                    gameOver(user);
             }else if(values.every(cell => cell!=='')){
-                setTimeout(()=>{
-                    gameOver(user)
-                },250)
-            
+                    gameOver();
             }
         };
         const playWithComputer = (e) => {
@@ -186,14 +181,14 @@ function game(){
                     playOneRound(user1);
                     
                     user1.state = false;
-
-                    setTimeout(()=>{
-                        computerPlay(user2.value);
-                        playOneRound(user2);
-
-                        user1.state = true;
-                    },1000)
-
+                    console.log((tag));
+                    if(tag){
+                        setTimeout(()=>{
+                            computerPlay(user2.value);
+                            playOneRound(user2);
+                            user1.state = true;
+                        },1000);
+                    }                    
                 };
             }else{
                 return
@@ -204,8 +199,11 @@ function game(){
             let num = Math.floor(Math.random()*9);
             if(grids[num].textContent === ""){
                 grids[num].textContent = value;
-            }else{
+            }else if(grids.some(grid => grid.textContent === "")){
                 computerPlay(value);
+            }else{
+                return;
+                
             }
         };
 
@@ -216,6 +214,7 @@ function game(){
             btn.style.display = 'none';
             user1.state = true;
             user2.state = false;
+            tag = true;
         })    
         return{newGrid,renderGrid,cleanGrid,gameOver}
     })(user1V,user2V);
@@ -253,7 +252,7 @@ function selectTypeGame(){
 
            } else {
                 
-                value1 = e.target.id === 'userX'? 'X':'0';
+                value1 = e.target.id === 'userX'? 'X':'O';
                 value2 = value1 === 'X'? 'O':'X';
 
                 //creating the user objects
